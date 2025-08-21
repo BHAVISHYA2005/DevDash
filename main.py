@@ -6,9 +6,7 @@ from error_parser import error_parser
 from suggestion_generator import suggestion_generator
 from notification import notification
 from audit import audit
-import os
-
-LOG_PATH = os.path.join('sample_logs', 'single_error.log')  # Example log file
+from config.config import LOG_PATH
 
 def main():
     # Step 1: Read log
@@ -24,11 +22,11 @@ def main():
     audit.log_action('suggestions_generated', {'suggestions': suggestions})
 
     # Step 4: Notify (simulate Slack)
-    notification.send_notification(suggestions)
-    audit.log_action('notification_sent', {'suggestions': suggestions})
+    notification.send_notification(suggestions, errors)
+    audit.log_action('notification_sent', {'suggestions': suggestions, 'errors': errors})
 
     # Step 5: Human approval (mocked)
-    approved = True  # Replace with real approval logic
+    approved = human_approval()
     audit.log_action('human_approval', {'approved': approved})
 
     if approved:
@@ -37,6 +35,11 @@ def main():
     else:
         print('Action declined. Escalating.')
         audit.log_action('fix_declined', {})
+
+def human_approval():
+    """Simulate human approval. Replace with Slack logic later."""
+    response = input("Approve suggested actions? (y/n): ").strip().lower()
+    return response == 'y'
 
 if __name__ == '__main__':
     main()

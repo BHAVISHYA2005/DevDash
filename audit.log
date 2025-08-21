@@ -1,0 +1,6 @@
+[2025-08-21T17:05:48.632715] log_read: {'file': 'sample_logs/single_error.log', 'lines': 3}
+[2025-08-21T17:05:48.633148] error_parsed: {'errors': ['ERROR', 'DatabaseError']}
+[2025-08-21T17:05:48.633193] suggestions_generated: {'suggestions': ['No suggestion available for: ERROR', 'Verify database connection and credentials.']}
+[2025-08-21T17:05:48.633225] notification_sent: {'suggestions': ['No suggestion available for: ERROR', 'Verify database connection and credentials.']}
+[2025-08-21T17:05:48.633243] human_approval: {'approved': True}
+[2025-08-21T17:05:48.633260] fix_executed: {}
