@@ -10,3 +10,27 @@
 [2025-08-21T17:27:35.094876] notification_sent: {'suggestions': ['Review error logs for details and escalate if unresolved.', 'Verify database connection, credentials, and database health. Restart DB service if needed.'], 'errors': ['ERROR', 'DatabaseError']}
 [2025-08-21T17:27:48.103394] human_approval: {'approved': True}
 [2025-08-21T17:27:48.103491] fix_executed: {}
+[2025-08-21T18:11:16.794717] log_read: {'file': 'sample_logs/single_error.log', 'lines': 3}
+[2025-08-21T18:11:16.795794] error_parsed: {'errors': ['DatabaseError', 'ERROR']}
+[2025-08-21T18:11:16.795832] suggestions_generated: {'suggestions': ['Verify database connection, credentials, and database health. Restart DB service if needed.', 'Review error logs for details and escalate if unresolved.']}
+[2025-08-21T18:11:16.795864] notification_sent: {'suggestions': ['Verify database connection, credentials, and database health. Restart DB service if needed.', 'Review error logs for details and escalate if unresolved.'], 'errors': ['DatabaseError', 'ERROR']}
+[2025-08-21T18:11:19.546106] human_approval: {'approved': True}
+[2025-08-21T18:11:19.546229] fix_executed: {}
+[2025-08-21T18:24:04.468941] log_read: {'file': 'sample_logs/single_error.log', 'lines': 3}
+[2025-08-21T18:24:04.469607] error_parsed: {'errors': ['DatabaseError', 'ERROR']}
+[2025-08-21T18:24:04.469645] suggestions_generated: {'suggestions': ['Verify database connection, credentials, and database health. Restart DB service if needed.', 'Review error logs for details and escalate if unresolved.']}
+[2025-08-21T18:24:04.469672] notification_sent: {'suggestions': ['Verify database connection, credentials, and database health. Restart DB service if needed.', 'Review error logs for details and escalate if unresolved.'], 'errors': ['DatabaseError', 'ERROR']}
+[2025-08-21T18:24:06.757643] human_approval: {'approved': True}
+[2025-08-21T18:24:06.757764] fix_executed: {}
+[2025-08-21T18:27:17.916812] log_read: {'file': 'sample_logs/single_error.log', 'lines': 3}
+[2025-08-21T18:27:17.917756] error_parsed: {'errors': ['ERROR', 'DatabaseError']}
+[2025-08-21T18:27:17.917850] suggestions_generated: {'suggestions': ['Review error logs for details and escalate if unresolved.', 'Verify database connection, credentials, and database health. Restart DB service if needed.']}
+[2025-08-21T18:27:17.917913] notification_sent: {'suggestions': ['Review error logs for details and escalate if unresolved.', 'Verify database connection, credentials, and database health. Restart DB service if needed.'], 'errors': ['ERROR', 'DatabaseError']}
+[2025-08-21T18:27:19.771223] human_approval: {'approved': True}
+[2025-08-21T18:27:19.771352] fix_executed: {}
+[2025-08-21T18:29:05.129312] log_read: {'file': 'sample_logs/single_error.log', 'lines': 3}
+[2025-08-21T18:29:05.129837] error_parsed: {'errors': ['ERROR', 'DatabaseError']}
+[2025-08-21T18:29:05.129863] suggestions_generated: {'suggestions': ['Review error logs for details and escalate if unresolved.', 'Verify database connection, credentials, and database health. Restart DB service if needed.']}
+[2025-08-21T18:29:05.129885] notification_sent: {'suggestions': ['Review error logs for details and escalate if unresolved.', 'Verify database connection, credentials, and database health. Restart DB service if needed.'], 'errors': ['ERROR', 'DatabaseError']}
+[2025-08-21T18:29:20.555287] human_approval: {'approved': True}
+[2025-08-21T18:29:20.555431] fix_executed: {}

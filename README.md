@@ -1,3 +1,6 @@
+## Secret Management
+Never commit your Slack token or channel ID to source code or GitHub. Store secrets in environment variables or a `.env` file (add `.env` to `.gitignore`).
+
 
 # Portia Oncall Agent
 

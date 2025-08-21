@@ -21,8 +21,12 @@ def send_notification(suggestions, errors=None):
         try:
             from slack_sdk import WebClient
             client = WebClient(token=SLACK_TOKEN)
-            client.chat_postMessage(channel=slack_channel, text=message)
-            print("Notification sent to Slack.")
+            response = client.chat_postMessage(channel=slack_channel, text=message)
+            if response['ok']:
+                print("Notification sent to Slack.")
+            else:
+                print(f"Slack API error: {response['error']}")
+                print(message)
         except Exception as e:
             print(f"Failed to send Slack notification: {e}")
             print(message)

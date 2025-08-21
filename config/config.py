@@ -1,8 +1,8 @@
+from dotenv import load_dotenv
 import os
 
-# Configuration loader for environment variables and defaults
-LOG_PATH = os.getenv('ONCALL_LOG_PATH', 'sample_logs/single_error.log')
-SLACK_TOKEN = os.getenv('ONCALL_SLACK_TOKEN', None)
-AUDIT_LOG_PATH = os.getenv('ONCALL_AUDIT_LOG_PATH', 'audit.log')
+load_dotenv()  # Loads variables from .env
 
-# Add more config variables as needed
+LOG_PATH = os.getenv('ONCALL_LOG_PATH', 'sample_logs/single_error.log')
+SLACK_TOKEN = os.getenv('ONCALL_SLACK_TOKEN')
+AUDIT_LOG_PATH = os.getenv('ONCALL_AUDIT_LOG_PATH', 'audit.log')
