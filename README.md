@@ -14,10 +14,19 @@ Portia Oncall Agent automates log triage for oncall engineers. It reads logs, de
 
 ## Setup
 1. Clone the repository.
-2. Install Python 3.7+ and required packages (see below).
-3. Set environment variables as needed (see `config/README.md`).
-4. Place sample log files in `sample_logs/`.
-5. Run the agent:
+2. Install Python 3.7+.
+3. Create and activate a virtual environment:
+	```sh
+	python3 -m venv venv
+	source venv/bin/activate  # or source venv/bin/activate.fish for fish shell
+	```
+4. Install required packages:
+	```sh
+	pip install slack_sdk
+	```
+5. Set environment variables as needed (see `config/README.md`).
+6. Place sample log files in `sample_logs/`.
+7. Run the agent:
 	```sh
 	python3 main.py
 	```
