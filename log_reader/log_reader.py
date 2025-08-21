@@ -1,6 +1,7 @@
 import sys
 
 
+
 def read_log_file(file_path):
     """Reads and prints the contents of the specified log file."""
     import re
@@ -19,6 +20,19 @@ def read_log_file(file_path):
     except FileNotFoundError:
         print(f"Error: File '{file_path}' not found.")
     except Exception as e:
+        pass
+
+def read_log(file_path):
+    """Reads the log file and returns its lines as a list."""
+    try:
+        with open(file_path, 'r') as f:
+            return [line.rstrip() for line in f]
+    except FileNotFoundError:
+        print(f"Error: File '{file_path}' not found.")
+        return []
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return []
         print(f"Error reading file: {e}")
 
 
