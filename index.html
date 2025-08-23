@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portia Oncall Agent - Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      color: #f5f6fa;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: rgba(44, 62, 80, 0.97);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+      padding: 48px 32px;
+      max-width: 480px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 1.15rem;
+      color: #b2bec3;
+      margin-bottom: 32px;
+    }
+    .cta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .cta a {
+      background: linear-gradient(90deg, #00b894 0%, #00cec9 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    }
+    .cta a.dashboard {
+      background: linear-gradient(90deg, #0984e3 0%, #00b894 100%);
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: #636e72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    @media (max-width: 600px) {
+      .card { padding: 24px 8px; }
+      h1 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">🛡️</div>
+    <h1>Portia Oncall Agent</h1>
+    <p>Automate oncall triage, ensure safety, and empower engineers with human-in-the-loop approvals.<br>Demo-ready for hackathon judges!</p>
+    <div class="cta">
+      <a href="approval_dashboard_modern.html" class="dashboard">Go to Approval Dashboard</a>
+      <a href="https://github.com/BHAVISHYA2005/portia-oncall-agent" target="_blank">View Source on GitHub</a>
+    </div>
+  </div>
+</body>
+</html>
