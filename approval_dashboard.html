@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Oncall Agent Approval Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #222; color: #eee; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #444; padding: 8px; text-align: left; }
+    th { background: #333; }
+    button { padding: 6px 12px; margin: 2px; }
+    .approved { color: #0f0; }
+    .rejected { color: #f00; }
+    .pending { color: #ff0; }
+  </style>
+</head>
+<body>
+  <h1>Oncall Agent Approval Dashboard</h1>
+  <button onclick="loadApprovals()">Refresh</button>
+  <table id="approvalsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Suggestion</th>
+        <th>Error</th>
+        <th>Details</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    function statusClass(status) {
+      if (status === 'approved') return 'approved';
+      if (status === 'rejected') return 'rejected';
+      return 'pending';
+    }
+    function loadApprovals() {
+      fetch('http://127.0.0.1:5000/approvals')
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.querySelector('#approvalsTable tbody');
+          tbody.innerHTML = '';
+          data.forEach(app => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${app.id}</td>
+              <td class="${statusClass(app.status)}">${app.status}</td>
+              <td>${Array.isArray(app.suggestion) ? app.suggestion.join('<br>') : app.suggestion}</td>
+              <td>${Array.isArray(app.error) ? app.error.join('<br>') : app.error}</td>
+              <td><pre>${JSON.stringify(app.details, null, 2)}</pre></td>
+              <td>
+                <button onclick="approve('${app.id}')" ${app.status!=='pending'?'disabled':''}>Approve</button>
+                <button onclick="reject('${app.id}')" ${app.status!=='pending'?'disabled':''}>Reject</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        });
+    }
+    function approve(id) {
+      fetch(`http://127.0.0.1:5000/approvals/${id}/approve`, { method: 'POST' })
+        .then(() => loadApprovals());
+    }
+    function reject(id) {
+      fetch(`http://127.0.0.1:5000/approvals/${id}/reject`, { method: 'POST' })
+        .then(() => loadApprovals());
+    }
+    loadApprovals();
+  </script>
+</body>
+</html>

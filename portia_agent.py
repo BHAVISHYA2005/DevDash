@@ -10,6 +10,8 @@ from suggestion_generator.suggestion_generator import generate_suggestions
 from notification.notification import send_notification
 from audit.audit import log_action
 from config.config import LOG_PATH
+import requests
+import time
 
 load_dotenv()
 
@@ -35,6 +37,25 @@ class ErrorParserTool(Tool):
         log_action('error_parsed', {'errors': errors})
         return errors
 
+class ApprovalAPIClient:
+    BASE_URL = "http://127.0.0.1:5000"
+    @staticmethod
+    def request_approval(suggestion, error, details=None):
+        resp = requests.post(f"{ApprovalAPIClient.BASE_URL}/approvals", json={
+            "suggestion": suggestion,
+            "error": error,
+            "details": details or {}
+        })
+        return resp.json()
+    @staticmethod
+    def get_approval_status(approval_id):
+        resp = requests.get(f"{ApprovalAPIClient.BASE_URL}/approvals")
+        approvals = resp.json()
+        for approval in approvals:
+            if approval["id"] == approval_id:
+                return approval["status"]
+        return None
+
 class SuggestionGeneratorTool(Tool):
     id: str = "suggestion_generator"
     name: str = "Suggestion Generator"
@@ -44,6 +65,22 @@ class SuggestionGeneratorTool(Tool):
         errors = context.input if hasattr(context, 'input') and context.input else []
         suggestions = generate_suggestions(errors)
         log_action('suggestions_generated', {'suggestions': suggestions})
+        # Approval API integration
+        if suggestions:
+            approval = ApprovalAPIClient.request_approval(suggestions, errors)
+            approval_id = approval["id"]
+            log_action('approval_requested', {'approval_id': approval_id, 'suggestions': suggestions, 'errors': errors})
+            # Poll for approval
+            status = approval["status"]
+            print(f"Waiting for approval (id: {approval_id})...")
+            while status == "pending":
+                time.sleep(2)
+                status = ApprovalAPIClient.get_approval_status(approval_id)
+                print(f"Approval status: {status}")
+            log_action('approval_status', {'approval_id': approval_id, 'status': status})
+            if status != "approved":
+                print("Action was not approved. Workflow will halt or escalate.")
+                return []
         return suggestions
 
 class NotificationTool(Tool):
@@ -54,8 +91,9 @@ class NotificationTool(Tool):
     def run(self, context):
         # context.input is expected to be a tuple (suggestions, errors)
         suggestions, errors = context.input if hasattr(context, 'input') and context.input else ([], [])
-        send_notification(suggestions, errors)
-        log_action('notification_sent', {'suggestions': suggestions, 'errors': errors})
+        dashboard_url = "http://127.0.0.1:5000"  # Or use the dashboard HTML file path if served
+        send_notification(suggestions, errors, dashboard_url=dashboard_url)
+        log_action('notification_sent', {'suggestions': suggestions, 'errors': errors, 'dashboard_url': dashboard_url})
         return {}
 
 class AuditTool(Tool):

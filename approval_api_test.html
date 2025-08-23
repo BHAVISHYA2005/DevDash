@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Approval API Test</title>
+</head>
+<body>
+  <h2>Test GET /approvals</h2>
+  <button onclick="getApprovals()">List Approvals</button>
+  <pre id="approvals"></pre>
+
+  <h2>Test POST /approvals</h2>
+  <button onclick="createApproval()">Create Approval</button>
+  <pre id="createResult"></pre>
+
+  <script>
+    function getApprovals() {
+      fetch('http://127.0.0.1:5000/approvals')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('approvals').textContent = JSON.stringify(data, null, 2);
+        });
+    }
+    function createApproval() {
+      fetch('http://127.0.0.1:5000/approvals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          suggestion: 'Restart database service',
+          error: 'DatabaseError',
+          details: { log: 'Database connection failed' }
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('createResult').textContent = JSON.stringify(data, null, 2);
+      });
+    }
+  </script>
+</body>
+</html>
