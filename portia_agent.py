@@ -84,20 +84,10 @@ class NotificationTool(Tool):
     id: str = "notification"
     name: str = "Notification"
     description: str = "Sends notifications to Slack."
-<<<<<<< HEAD
     output_schema: type = dict
     def run(self, suggestions, errors):
         send_notification(suggestions, errors)
         log_action('notification_sent', {'suggestions': suggestions, 'errors': errors})
-=======
-    output_schema: tuple = ("list", "dict")
-    def run(self, context):
-        # context.input is expected to be a tuple (suggestions, errors)
-        suggestions, errors = context.input if hasattr(context, 'input') and context.input else ([], [])
-        dashboard_url = "http://127.0.0.1:5000"  # Or use the dashboard HTML file path if served
-        send_notification(suggestions, errors, dashboard_url=dashboard_url)
-        log_action('notification_sent', {'suggestions': suggestions, 'errors': errors, 'dashboard_url': dashboard_url})
->>>>>>> cedad774d9fedb89ad0699cad850db61561137d7
         return {}
 
 class AuditTool(Tool):
