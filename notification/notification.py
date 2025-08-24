@@ -1,7 +1,7 @@
 from config.config import SLACK_TOKEN
 import os
 
-def send_notification(suggestions, errors=None):
+def send_notification(suggestions, errors=None, dashboard_url=None):
     """Send notification to Slack if configured, else print."""
     if errors is None:
         errors = []
@@ -14,7 +14,9 @@ def send_notification(suggestions, errors=None):
         message += "Suggested Actions:\n"
         for sug in suggestions:
             message += f"- {sug}\n"
-    message += "\nPlease review and approve/decline in Slack."
+    if dashboard_url:
+        message += f"\nReview and approve here: {dashboard_url}\n"
+    message += "\nPlease review and approve/decline in Slack or Dashboard."
 
     slack_channel = os.getenv('ONCALL_SLACK_CHANNEL')
     if SLACK_TOKEN and slack_channel:
