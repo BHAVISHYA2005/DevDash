@@ -44,16 +44,6 @@ Portia Oncall Agent automates log triage for oncall engineers. It reads logs, de
 ## Why This Matters
 This agent saves engineers from unnecessary night-time disruptions, ensures safety by requiring human approval, and provides a fully auditable workflow. It is designed for real-world impact and extensibility.
 
-## Hackathon Value
-- Demonstrates real-world automation, safety, and auditability.
-- Modular and extensible for future improvements (Portia, Slack, more error patterns).
-- Easy to set up and demo for judges.
-
-## Next Steps
-- Expand error patterns and suggestions.
-- Integrate Slack API for notifications.
-- Add Portia agent orchestration.
-
 ---
 For architecture details, see `architecture.md`. For configuration, see `config/README.md`.
 
