@@ -1,0 +1,5 @@
+2025-08-19 03:00:00 INFO Starting service
+2025-08-19 03:01:00 ERROR Timeout while connecting to API
+2025-08-19 03:02:00 CRITICAL Disk full
+2025-08-19 03:03:00 WARNING Low memory
+2025-08-19 03:04:00 ERROR Failed to write to disk

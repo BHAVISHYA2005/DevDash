@@ -1,0 +1,5 @@
+2025-08-19 04:00:00 INFO Starting service
+2025-08-19 04:01:00 WARNING Configuration file missing, using defaults
+2025-08-19 04:02:00 ERROR Unable to authenticate user
+2025-08-19 04:03:00 INFO Service running
+2025-08-19 04:04:00 ERROR Service crashed unexpectedly
