@@ -1,0 +1,9 @@
+# Ignore home directory files
+~/
+
+# Ignore browser config
+.config/
+
+# OS files
+.DS_Store
+Thumbs.db
