@@ -1,0 +1,5 @@
+{
+    "buildCommand": "cd DevDash && npm install && npm run build",
+    "outputDirectory": "DevDash/dist",
+    "installCommand": "cd DevDash && npm install"
+}
